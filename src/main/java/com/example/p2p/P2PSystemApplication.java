@@ -1,0 +1,11 @@
+package com.example.p2p;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class P2PSystemApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(P2PSystemApplication.class, args);
+    }
+}

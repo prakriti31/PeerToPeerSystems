@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer-to-Peer System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Peer-to-Peer System</h1>
+
+<!-- Initialize Peer -->
+<div id="initialize-peer">
+    <h2>Initialize Peer</h2>
+    <label for="indexServerIp">Index Server IP:</label>
+    <input type="text" id="indexServerIp" placeholder="127.0.0.1">
+    <label for="indexServerPort">Index Server Port:</label>
+    <input type="text" id="indexServerPort" placeholder="8080">
+    <button onclick="initializePeer()">Initialize</button>
+    <p id="init-response"></p>
+</div>
+
+<!-- Create Topic -->
+<div id="create-topic">
+    <h2>Create Topic</h2>
+    <label for="topicName">Topic Name:</label>
+    <input type="text" id="topicName" placeholder="Enter topic name">
+    <button onclick="createTopic()">Create Topic</button>
+    <p id="create-response"></p>
+</div>
+
+<!-- Publish Message -->
+<div id="publish-message">
+    <h2>Publish Message</h2>
+    <label for="topicToPublish">Topic:</label>
+    <input type="text" id="topicToPublish" placeholder="Enter topic name">
+    <label for="message">Message:</label>
+    <input type="text" id="message" placeholder="Enter your message">
+    <button onclick="publishMessage()">Publish</button>
+    <p id="publish-response"></p>
+</div>
+
+<!-- Subscribe to Topic -->
+<div id="subscribe-topic">
+    <h2>Subscribe to Topic</h2>
+    <label for="topicToSubscribe">Topic:</label>
+    <input type="text" id="topicToSubscribe" placeholder="Enter topic name">
+    <button onclick="subscribeTopic()">Subscribe</button>
+    <p id="subscribe-response"></p>
+</div>
+
+<!-- Pull Messages -->
+<div id="pull-messages">
+    <h2>Pull Messages</h2>
+    <label for="topicToPull">Topic:</label>
+    <input type="text" id="topicToPull" placeholder="Enter topic name">
+    <button onclick="pullMessages()">Pull Messages</button>
+    <p id="messages-response"></p>
+</div>
+
+<!-- Register Node with Indexing Server -->
+<div id="register-node">
+    <h2>Register Node</h2>
+    <button onclick="registerNode()">Register Node</button>
+    <p id="register-response"></p>
+</div>
+
+<!-- Unregister Node -->
+<div id="unregister-node">
+    <h2>Unregister Node</h2>
+    <label for="unregisterNodeId">Node ID:</label>
+    <input type="text" id="unregisterNodeId" placeholder="Enter node ID">
+    <button onclick="unregisterNode()">Unregister Node</button>
+    <p id="unregister-response"></p>
+</div>
+
+<!-- Update Topics -->
+<div id="update-topics">
+    <h2>Update Topics</h2>
+    <label for="updateNodeId">Node ID:</label>
+    <input type="text" id="updateNodeId" placeholder="Enter node ID">
+    <label for="updateTopics">Topics (comma separated):</label>
+    <input type="text" id="updateTopics" placeholder="Enter topics">
+    <button onclick="updateTopics()">Update Topics</button>
+    <p id="update-response"></p>
+</div>
+
+<!-- Query Topic -->
+<div id="query-topic">
+    <h2>Query Topic</h2>
+    <label for="queryTopic">Topic:</label>
+    <input type="text" id="queryTopic" placeholder="Enter topic name">
+    <button onclick="queryTopic()">Query Topic</button>
+    <p id="query-response"></p>
+</div>
+
+<!-- Report Metrics -->
+<div id="report-metrics">
+    <h2>Report Metrics</h2>
+    <label for="latency">Latency:</label>
+    <input type="number" id="latency" placeholder="Enter latency (ms)">
+    <label for="bandwidth">Bandwidth:</label>
+    <input type="number" id="bandwidth" placeholder="Enter bandwidth (Mbps)">
+    <button onclick="reportMetrics()">Report Metrics</button>
+    <p id="metrics-response"></p>
+</div>
+
+<!-- Get Metrics -->
+<div id="get-metrics">
+    <h2>Get Metrics</h2>
+    <button onclick="getMetrics()">Get Metrics</button>
+    <p id="get-metrics-response"></p>
+</div>
+
+<script src="peer.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a2aa55c1-ce7e-40b5-94ca-1b46dbb427da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/p2p/IndexingServerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/p2p/P2PSystemApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/p2p/PeerNodeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/peer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/IndexingServerBenchmarkTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/IndexingServerPlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/PeerNodeBenchmarkTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/PeerNodePlot.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2n37EdabwIisMwcJPXe83VKhsy6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.IndexingServerBenchmarkTests.executor": "Run",
+    "Application.IndexingServerPlot.executor": "Run",
+    "Application.PeerNetworkPlot.executor": "Run",
+    "Application.PeerNetworkTestRequirement1.executor": "Run",
+    "Application.PeerNetworkTestRequirement2.executor": "Run",
+    "Application.PeerNodeBenchmarkTests.executor": "Run",
+    "Application.PeerNodePlot.executor": "Run",
+    "Application.com.example.p2p.IndexingServerBenchmarkTests.executor": "Run",
+    "JUnit.PeerNetworkTestRequirement1.executor": "Run",
+    "JUnit.PeerNodeControllerTest.executor": "Run",
+    "JUnit.PeerNodeControllerTest.testCreateTopic.executor": "Run",
+    "JUnit.PeerNodeControllerTest.testPullMessages.executor": "Run",
+    "JUnit.PeerToPeerIntegrationTest.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.P2PSystemApplication (1).executor": "Run",
+    "Spring Boot.P2PSystemApplication.executor": "Run",
+    "Spring Boot.PeerNetworkTestRequirement1.executor": "Run",
+    "Spring Boot.PeerNetworkTestRequirement2.executor": "Run",
+    "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/prakr/Desktop/Sem1/Operating Systems/Assignments/01_CS550_Sharma_Prakriti_PA2/Code/PeerToPeerSystem",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.p2p" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\prakr\Desktop\Sem1\Operating Systems\Assignments\01_CS550_Sharma_Prakriti_PA2\Code\PeerToPeerSystem\src\main\java" />
+      <recent name="C:\Users\prakr\Desktop\Sem1\Operating Systems\Assignments\01_CS550_Sharma_Prakriti_PA2\Code\PeerToPeerSystem\src\test\java\test" />
+      <recent name="C:\Users\prakr\Desktop\Sem1\Operating Systems\Assignments\01_CS550_Sharma_Prakriti_PA2\Code\PeerToPeerSystem\src\test" />
+      <recent name="C:\Users\prakr\Desktop\Sem1\Operating Systems\Assignments\01_CS550_Sharma_Prakriti_PA2\Code\PeerToPeerSystem\frontend\src" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.p2p" />
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.PeerNodePlot">
+    <configuration name="IndexingServerBenchmarkTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.IndexingServerBenchmarkTests" />
+      <module name="p2p-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IndexingServerPlot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.IndexingServerPlot" />
+      <module name="p2p-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="P2PSystemApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="temurin-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.example.p2p.P2PSystemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.p2p.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PeerNodeBenchmarkTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.PeerNodeBenchmarkTests" />
+      <module name="p2p-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PeerNodePlot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.PeerNodePlot" />
+      <module name="p2p-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="PeerToPeerSystem" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="PeerToPeerSystem" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="P2PSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="temurin-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="p2p-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.p2p.P2PSystemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.p2p.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.P2PSystemApplication" />
+      <item itemvalue="Application.PeerNodeBenchmarkTests" />
+      <item itemvalue="Application.IndexingServerBenchmarkTests" />
+      <item itemvalue="Application.IndexingServerPlot" />
+      <item itemvalue="Application.PeerNodePlot" />
+      <item itemvalue="Spring Boot.P2PSystemApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.PeerNodePlot" />
+        <item itemvalue="Application.PeerNodeBenchmarkTests" />
+        <item itemvalue="Application.IndexingServerPlot" />
+        <item itemvalue="Application.IndexingServerBenchmarkTests" />
+        <item itemvalue="Spring Boot.P2PSystemApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2aa55c1-ce7e-40b5-94ca-1b46dbb427da" name="Changes" comment="" />
+      <created>1728189795719</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728189795719</updated>
+      <workItem from="1728189797024" duration="2730000" />
+      <workItem from="1728227666552" duration="2695000" />
+      <workItem from="1728239238660" duration="18524000" />
+      <workItem from="1728319104708" duration="9311000" />
+      <workItem from="1728468256996" duration="13586000" />
+      <workItem from="1728545222983" duration="953000" />
+      <workItem from="1728573283505" duration="6919000" />
+      <workItem from="1728606690474" duration="6240000" />
+      <workItem from="1728616534558" duration="130000" />
+      <workItem from="1728616679337" duration="146000" />
+      <workItem from="1728616874476" duration="1190000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PeerToPeerSystem$PeerNetworkTestRequirement1.ic" NAME="PeerNetworkTestRequirement1 Coverage Results" MODIFIED="1728472142125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+  </component>
+</project>
