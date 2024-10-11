@@ -104,4 +104,72 @@ public class PeerNodePlot {
                         System.err.println("Skipping line due to number format issue: " + line);
                     }
                 } else {
-                    System.err.println("Skipping line
+                    System.err.println("Skipping line due to incorrect format: " + line);
+                }
+            }
+        }
+
+        // Ensure that there is data to plot
+        if (numClientsList.isEmpty() || valuesList.isEmpty()) {
+            throw new IllegalArgumentException("Y-Axis data cannot be empty!!!");
+        }
+
+        // Create a new XYChart with the appropriate labels and theme
+        XYChart chart = new XYChartBuilder()
+                .width(800)  // Width of the chart
+                .height(600) // Height of the chart
+                .title(getChartTitle(fileName, chartType)) // Title of the chart
+                .xAxisTitle("Number of Clients") // X-axis label
+                .yAxisTitle(chartType + " (seconds)") // Y-axis label
+                .theme(Styler.ChartTheme.Matlab) // Chart theme (can be customized)
+                .build();
+
+        // Add the data series to the chart
+        chart.addSeries(chartType + " Values", numClientsList, valuesList);
+
+        return chart;
+    }
+
+    /**
+     * Saves a chart as a PNG file.
+     * @param chart The XYChart object to be saved.
+     * @param fileName The name of the PNG file.
+     */
+    private static void saveChartAsPNG(XYChart chart, String fileName) {
+        try {
+            // Encode and save the chart as a PNG file
+            BitmapEncoder.saveBitmap(chart, fileName, BitmapEncoder.BitmapFormat.PNG);
+        } catch (IOException e) {
+            e.printStackTrace();  // Handle any I/O exceptions
+        }
+    }
+
+    /**
+     * Determines the title of the chart based on the file name and chart type.
+     * @param fileName The name of the CSV file.
+     * @param chartType The type of chart (e.g., "Latency", "Throughput").
+     * @return The appropriate title for the chart.
+     */
+    private static String getChartTitle(String fileName, String chartType) {
+        // Use a switch statement to map each file to a meaningful chart title
+        return switch (fileName) {
+            case "initialize_latency.csv" -> "Initialize Latency Benchmark";
+            case "publish_latency.csv" -> "Publish Latency Benchmark";
+            case "subscribe_latency.csv" -> "Subscribe Latency Benchmark";
+            case "pull_messages_latency.csv" -> "Pull Messages Latency Benchmark";
+            case "register_with_indexing_server_latency.csv" -> "Register with Indexing Server Latency Benchmark";
+            case "create_topic_latency.csv" -> "Create Topic Latency Benchmark";
+            case "report_metrics_latency.csv" -> "Report Metrics Latency Benchmark";
+            case "event_log_latency.csv" -> "Event Log Latency Benchmark";
+            case "initialize_throughput.csv" -> "Initialize Throughput Benchmark";
+            case "publish_throughput.csv" -> "Publish Throughput Benchmark";
+            case "subscribe_throughput.csv" -> "Subscribe Throughput Benchmark";
+            case "pull_messages_throughput.csv" -> "Pull Messages Throughput Benchmark";
+            case "register_with_indexing_server_throughput.csv" -> "Register with Indexing Server Throughput Benchmark";
+            case "create_topic_throughput.csv" -> "Create Topic Throughput Benchmark";
+            case "report_metrics_throughput.csv" -> "Report Metrics Throughput Benchmark";
+            case "event_log_throughput.csv" -> "Event Log Throughput Benchmark";
+            default -> "Benchmark Results";  // Default title if none match
+        };
+    }
+}
