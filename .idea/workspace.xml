@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2aa55c1-ce7e-40b5-94ca-1b46dbb427da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/p2p/IndexingServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/p2p/IndexingServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/p2p/P2PSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/p2p/P2PSystemApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/IndexingServerBenchmarkTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/IndexingServerBenchmarkTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/IndexingServerPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/IndexingServerPlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/PeerNetworkTestRequirement2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/PeerNodeBenchmarkTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/PeerNodeBenchmarkTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +275,7 @@
       <workItem from="1728606690474" duration="6240000" />
       <workItem from="1728616534558" duration="130000" />
       <workItem from="1728616679337" duration="146000" />
-      <workItem from="1728616874476" duration="1491000" />
+      <workItem from="1728616874476" duration="3726000" />
     </task>
     <servers />
   </component>

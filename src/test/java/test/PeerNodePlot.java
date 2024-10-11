@@ -15,8 +15,10 @@ import java.util.List;
 
 public class PeerNodePlot {
 
+    // Directory containing the benchmark CSV files
     private static final String DIRECTORY = "peernodetests/";
 
+    // List of latency benchmark files
     private static final String[] LATENCY_FILES = {
             "initialize_latency.csv",
             "publish_latency.csv",
@@ -28,6 +30,7 @@ public class PeerNodePlot {
             "event_log_latency.csv"
     };
 
+    // List of throughput benchmark files
     private static final String[] THROUGHPUT_FILES = {
             "initialize_throughput.csv",
             "publish_throughput.csv",
@@ -40,42 +43,59 @@ public class PeerNodePlot {
     };
 
     public static void main(String[] args) {
+        // Process each latency file to create and save corresponding charts
         for (String file : LATENCY_FILES) {
             try {
+                // Create the chart for latency data
                 XYChart chart = createChart(DIRECTORY + file, "Latency");
+                // Save the chart as a PNG image
                 String outputFileName = DIRECTORY + file.replace(".csv", ".png");
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved latency chart for " + file + " as " + outputFileName);
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace();  // Handle any I/O exceptions
             }
         }
 
+        // Process each throughput file to create and save corresponding charts
         for (String file : THROUGHPUT_FILES) {
             try {
+                // Create the chart for throughput data
                 XYChart chart = createChart(DIRECTORY + file, "Throughput");
+                // Save the chart as a PNG image
                 String outputFileName = DIRECTORY + file.replace(".csv", ".png");
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved throughput chart for " + file + " as " + outputFileName);
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace();  // Handle any I/O exceptions
             }
         }
     }
 
+    /**
+     * Reads data from a CSV file and creates an XYChart.
+     * @param fileName The name of the CSV file.
+     * @param chartType The type of chart (e.g., "Latency", "Throughput").
+     * @return The created XYChart object.
+     * @throws IOException If there is an error reading the file.
+     */
     private static XYChart createChart(String fileName, String chartType) throws IOException {
+        // Lists to hold the number of clients and the corresponding values (latency or throughput)
         List<Integer> numClientsList = new ArrayList<>();
         List<Double> valuesList = new ArrayList<>();
 
+        // Read the CSV file
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             // Skip header
             br.readLine();
 
+            // Read the rest of the lines and extract data
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 2) {
                     try {
+                        // Parse the number of clients and the corresponding value
                         int numClients = Integer.parseInt(parts[0].trim());
                         double value = Double.parseDouble(parts[1].trim());
                         numClientsList.add(numClients);
@@ -84,56 +104,4 @@ public class PeerNodePlot {
                         System.err.println("Skipping line due to number format issue: " + line);
                     }
                 } else {
-                    System.err.println("Skipping line due to incorrect format: " + line);
-                }
-            }
-        }
-
-        if (numClientsList.isEmpty() || valuesList.isEmpty()) {
-            throw new IllegalArgumentException("Y-Axis data cannot be empty!!!");
-        }
-
-        XYChart chart = new XYChartBuilder()
-                .width(800)
-                .height(600)
-                .title(getChartTitle(fileName, chartType))
-                .xAxisTitle("Number of Clients")
-                .yAxisTitle(chartType + " (seconds)")
-                .theme(Styler.ChartTheme.Matlab)
-                .build();
-
-        chart.addSeries(chartType + " Values", numClientsList, valuesList);
-
-        return chart;
-    }
-
-    private static void saveChartAsPNG(XYChart chart, String fileName) {
-        try {
-            BitmapEncoder.saveBitmap(chart, fileName, BitmapEncoder.BitmapFormat.PNG);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String getChartTitle(String fileName, String chartType) {
-        return switch (fileName) {
-            case "initialize_latency.csv" -> "Initialize Latency Benchmark";
-            case "publish_latency.csv" -> "Publish Latency Benchmark";
-            case "subscribe_latency.csv" -> "Subscribe Latency Benchmark";
-            case "pull_messages_latency.csv" -> "Pull Messages Latency Benchmark";
-            case "register_with_indexing_server_latency.csv" -> "Register with Indexing Server Latency Benchmark";
-            case "create_topic_latency.csv" -> "Create Topic Latency Benchmark";
-            case "report_metrics_latency.csv" -> "Report Metrics Latency Benchmark";
-            case "event_log_latency.csv" -> "Event Log Latency Benchmark";
-            case "initialize_throughput.csv" -> "Initialize Throughput Benchmark";
-            case "publish_throughput.csv" -> "Publish Throughput Benchmark";
-            case "subscribe_throughput.csv" -> "Subscribe Throughput Benchmark";
-            case "pull_messages_throughput.csv" -> "Pull Messages Throughput Benchmark";
-            case "register_with_indexing_server_throughput.csv" -> "Register with Indexing Server Throughput Benchmark";
-            case "create_topic_throughput.csv" -> "Create Topic Throughput Benchmark";
-            case "report_metrics_throughput.csv" -> "Report Metrics Throughput Benchmark";
-            case "event_log_throughput.csv" -> "Event Log Throughput Benchmark";
-            default -> "Benchmark Results";
-        };
-    }
-}
+                    System.err.println("Skipping line
