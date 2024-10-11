@@ -93,7 +93,7 @@ text
 - Initialize 3 peers on different ports:
  ```
  cd target/
- java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8081
+ java -jar p2p-systegitm-0.0.1-SNAPSHOT.jar --server.port=8081
  java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8082
  java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8083
  ```
