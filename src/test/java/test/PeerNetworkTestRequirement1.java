@@ -23,6 +23,8 @@ public class PeerNetworkTestRequirement1 implements CommandLineRunner { // Imple
     @Override
     public void run(String... args) throws Exception { // Method that runs after application startup
         // Start the indexing server (simulated in this test)
+        System.out.println("Spring Boot application started.");
+
         System.out.println("Starting Indexing Server...");
         startIndexingServer(); // Simulates the start of an indexing server
 

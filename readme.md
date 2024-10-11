@@ -1,86 +1,106 @@
-[//]: # (# PeerNetworkTestRequirement1.java)
+# Peer-to-Peer System in Java
 
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8081 &)
+## Table of Contents
+- [Introduction](#introduction)
+- [Tools Used](#tools-used)
+- [What is a Peer-to-Peer System?](#what-is-a-peer-to-peer-system)
+- [Structure of the APIs](#structure-of-the-apis)
+- [API Overview](#api-overview)
+- [Testing Results](#testing-results)
+- [Conclusion](#conclusion)
+- [How to Run the Project](#how-to-run-the-project)
 
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8082 &)
+## Introduction
+This project implements a Peer-to-Peer (P2P) System in Java, focusing on efficient communication, fault tolerance, and high availability.
 
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8083 &)
+## Tools Used
+- Maven
+- Gradle
+- XYChart
+- Spring Boot
+- Java
 
-[//]: # ()
-[//]: # (To check if the ports are up and running)
+## What is a Peer-to-Peer System?
+A Peer-to-Peer (P2P) system is a decentralized network architecture where participants (peers) interact and share resources directly without relying on a central server. Key characteristics include:
+- Decentralization
+- Distributed Resources
+- Scalability
+- Fault Tolerance
 
-[//]: # (netstat -tuln | grep LISTEN)
+## Structure of the APIs
+The system includes 13 API endpoints, extending the functionality of a Publisher-Subscriber System.
 
-[//]: # (This will list all active connections and listening ports, helping you confirm that your application instances are indeed running on ports 8081, 8082, and 8083.)
+## API Overview
+1. Initialize Peer Node
+2. Register Peer with Indexing Server
+3. Create Topic on Peer Node
+4. Publish Message to Topic
+5. Subscribe to a Topic
+6. Pull Messages from a Topic
+7. Unregister Peer Node
+8. Query Topic from Indexing Server
+9. Report Metrics to Indexing Server
+10. Get Event Log of Peer
+11. Get Metrics from Indexing Server
 
-[//]: # ()
-[//]: # (Steps to Run Your Application)
+## Testing Results
+### Requirement 1: Deploying Multiple Peers
+- At least 3 peers and 1 indexing server were set up.
+- All APIs were tested for proper functionality.
+- Multiple peer nodes successfully published and subscribed to topics simultaneously.
 
-[//]: # (Navigate to the Directory)
+### Requirement 2: Measuring Response Time
+- Tested with varying numbers of concurrent peer nodes (2, 4, 8, 10, 12, 14, 16, 18, 20).
+- Each node made 1000 requests.
+- The indexing server was configured to hold 1000 topics.
+- Results were graphed to show the relationship between the number of concurrent nodes and average response time.
 
-[//]: # (Open your terminal and navigate to the directory where your JAR file is located:)
+### Requirement 3: Benchmarking Latency and Throughput
+- Started with 1 peer and 1 indexing server.
+- Increased the number of peers to 8.
+- Graphed results for latency and throughput of each API.
 
-[//]: # ()
-[//]: # (bash)
+## Conclusion
+The project successfully implemented a robust P2P messaging system with:
+- Efficient communication
+- Fault tolerance
+- High availability
+- Performance benchmarking
+- Network monitoring and analytics
 
-[//]: # (Copy code)
+## How to Run the Project
+1. Clone the repository:
 
-[//]: # (cd /path/to/your/jarfile)
+git clone https://github.com/prakriti31/PeerToPeerSystems.git
 
-[//]: # (Run the Application on Different Ports)
+2. Build the project:
 
-[//]: # (Execute the following commands to run the application on the specified ports. You can do this in separate terminal windows or tabs to run them concurrently:)
+mvn clean install
+text
+3. Run tests:
 
-[//]: # ()
-[//]: # (bash)
+mvn test
+text
 
-[//]: # (Copy code)
+### Prerequisites for Running Tests
+- For IndexingServerTests:
+- Start the Spring Boot server on port 8080 using P2PSystemApplication.java
+- Run the indexing server plot file to generate graphs from CSVs 
+- For PeerNodeTests and PeerNodePlot:
+- Follow a similar approach as IndexingServerTests
+- For requirements1 file:
+- Stop/Kill any process running on port 8080
+- Initialize 3 peers on different ports:
+ ```
+ cd target/
+ java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8081
+ java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8082
+ java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8083
+ ```
+- For requirements2 file:
+- Initialize 20 peers on ports 8081 to 8100 and then trigger the file
+- To initialize APIs:
+- Run P2PSystemApplication.java
+- Use the provided cURLs to interact with the system
 
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8081)
-
-[//]: # (bash)
-
-[//]: # (Copy code)
-
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8082)
-
-[//]: # (bash)
-
-[//]: # (Copy code)
-
-[//]: # (java -jar p2p-system-0.0.1-SNAPSHOT.jar --server.port=8083)
-
-
-
-
-
-[//]: # (file: PeerNetworkTestRequirements2)
-
-[//]: # (Explanation:)
-
-[//]: # (Concurrent Peer Nodes:)
-
-[//]: # ()
-[//]: # (The code tests with 2, 4, and 8 peer nodes by calling the measureAverageResponseTime function.)
-
-[//]: # (Each peer node runs on its own thread and queries the indexing server.)
-
-[//]: # (Requests per Node:)
-
-[//]: # ()
-[//]: # (Each peer node sends 1000 requests to the indexing server. This can be adjusted by modifying the REQUESTS_PER_NODE constant.)
-
-[//]: # (Simulating the Indexing Server:)
-
-[//]: # ()
-[//]: # (The server holds 1 million topics. The peers query these topics, which simulates querying topic information from the indexing server.)
-
-[//]: # (Measuring Response Time:)
-
-[//]: # ()
-[//]: # (The queryIndexingServer method simulates querying a topic from the indexing server and records the response time for each request.)
-
-[//]: # (Average Response Time:)
-
-[//]: # ()
-[//]: # (The average response time per request is calculated and printed for each configuration of peer nodes &#40;2, 4, 8&#41;.)
+For more detailed information, please refer to the full documentation.
