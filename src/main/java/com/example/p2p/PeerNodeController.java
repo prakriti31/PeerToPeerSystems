@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
@@ -18,73 +19,51 @@ public class PeerNodeController {
 
     private static final Logger logger = LoggerFactory.getLogger(PeerNodeController.class);
 
-    // Static counter for generating peer IDs
     private static final AtomicInteger peerCounter = new AtomicInteger(1);
 
     private String nodeId;
     private String indexingServerUrl;
 
-    // List of topics hosted by this peer node
     private List<String> topics = new ArrayList<>();
     private final RestTemplate restTemplate = new RestTemplate();
 
-    // Stores subscribers for each topic
     private final Map<String, List<String>> topicSubscribers = new HashMap<>();
-
-    // Stores messages for each topic
     private final Map<String, List<String>> topicMessages = new HashMap<>();
 
-    // Event log for the peer node
-    private final List<String> eventLog = new ArrayList<>();
+    private final List<String> eventLog = new CopyOnWriteArrayList<>();
 
-    /**
-     * Initialize the peer node with nodeId, indexing server URL, and listening port.
-     * @param indexServerIp IP address of the indexing server.
-     * @param indexServerPort Port number of the indexing server.
-     * @return Initialization status.
-     */
     @PostMapping("/initialize")
     public Map<String, Object> initialize(
             @RequestParam String indexServerIp,
             @RequestParam int indexServerPort) {
 
-        // Generate a new peer ID each time this method is called
         this.nodeId = "peer" + peerCounter.getAndIncrement();
         this.indexingServerUrl = "http://" + indexServerIp + ":" + indexServerPort + "/indexing";
 
         logger.info("Peer node initialized with ID: " + nodeId + ", Indexing Server: " + indexingServerUrl);
+        logEvent("Peer Initialized", "ID: " + nodeId);
 
         return Map.of("status", "initialized", "node_id", nodeId);
     }
 
-    /**
-     * Publish a message to a topic hosted by this peer.
-     * @param body Request body containing the topic and message.
-     * @return A map with the status of the operation.
-     */
     @PostMapping("/publish")
     public Map<String, Object> publish(@RequestBody Map<String, Object> body) {
         String topic = (String) body.get("topic");
         String message = (String) body.get("message");
 
-        // Check if the topic is hosted by this peer
         if (!topics.contains(topic)) {
             logger.warn("Attempt to publish to non-hosted topic: " + topic);
             return Map.of("status", "error", "message", "Topic not hosted here");
         }
 
-        // Store the message for this topic
         topicMessages.computeIfAbsent(topic, k -> new ArrayList<>()).add(message);
 
         logger.info("Message published to topic " + topic + ": " + message);
+        logEvent("Message Published", "Topic: " + topic + ", Message: " + message);
+
         return Map.of("status", "published", "topic", topic);
     }
 
-    /**
-     * Subscribe to a topic by querying the indexing server and forwarding to the correct peer.
-     * @param topic The topic to subscribe to.
-     * @return A map with the status of the subscription.
-     */
     @GetMapping("/subscribe/{topic}")
     public Map<String, Object> subscribe(@PathVariable String topic) {
         String queryUrl = indexingServerUrl + "/query_topic/" + topic;
@@ -93,13 +72,12 @@ public class PeerNodeController {
         if ("found".equals(response.get("status"))) {
             String hostingNodeId = (String) response.get("node_id");
 
-            // If this node hosts the topic, register the subscription
             if (hostingNodeId.equals(this.nodeId)) {
                 logger.info("Subscribed to topic " + topic + " on this node");
                 topicSubscribers.computeIfAbsent(topic, k -> new ArrayList<>()).add(this.nodeId);
+                logEvent("Subscribed to Topic", "Topic: " + topic);
                 return Map.of("status", "subscribed", "topic", topic);
             } else {
-                // Forward subscription request to the peer hosting this topic
                 return forwardSubscription(hostingNodeId, topic);
             }
         }
@@ -108,15 +86,13 @@ public class PeerNodeController {
         return Map.of("status", "error", "message", "Topic not found");
     }
 
-    /**
-     * Forward subscription request to the hosting node.
-     */
     private Map<String, Object> forwardSubscription(String nodeId, String topic) {
         String peerUrl = "http://localhost:8081/peer/subscribe/" + topic;
 
         try {
             Map<String, Object> response = restTemplate.getForObject(peerUrl, Map.class);
             logger.info("Forwarded subscription request for topic " + topic + " to node " + nodeId);
+            logEvent("Forwarded Subscription", "Topic: " + topic + ", Node: " + nodeId);
             return response;
         } catch (Exception e) {
             logger.error("Failed to forward subscription to node " + nodeId, e);
@@ -124,37 +100,24 @@ public class PeerNodeController {
         }
     }
 
-    /**
-     * Pull messages for a specific topic.
-     * @param topic The topic to pull messages from.
-     * @return A map containing the list of messages.
-     */
     @GetMapping("/pull_messages/{topic}")
     public Map<String, Object> pullMessages(@PathVariable String topic) {
-        // Check if the topic is hosted by this peer node
         if (!topics.contains(topic)) {
             return Map.of("status", "error", "message", "Topic not hosted here");
         }
 
-        // Get the messages for this topic
         List<String> messages = topicMessages.getOrDefault(topic, new ArrayList<>());
 
-        // Return error if there are no messages to pull
         if (messages.isEmpty()) {
             return Map.of("status", "error", "message", "No messages available");
         }
 
-        // Clear the messages after returning them
-        topicMessages.put(topic, new ArrayList<>());  // Clear the messages list for this topic
+        topicMessages.put(topic, new ArrayList<>());
 
-        // Return the pulled messages
+        logEvent("Messages Pulled", "Topic: " + topic);
         return Map.of("status", "success", "messages", messages);
     }
 
-    /**
-     * Register this peer node with the central indexing server.
-     * @return A map with the status of the registration.
-     */
     @PostMapping("/register_with_indexing_server")
     public Map<String, Object> registerWithIndexingServer() {
         Map<String, Object> registrationPayload = Map.of(
@@ -165,6 +128,7 @@ public class PeerNodeController {
         try {
             Map<String, Object> response = restTemplate.postForObject(indexingServerUrl + "/register", registrationPayload, Map.class);
             logger.info("Registered with indexing server: " + indexingServerUrl);
+            logEvent("Registered with Indexing Server", "Node ID: " + nodeId);
             return response;
         } catch (Exception e) {
             logger.error("Failed to register with indexing server", e);
@@ -172,33 +136,39 @@ public class PeerNodeController {
         }
     }
 
-    /**
-     * Create a new topic on this peer node.
-     * @param topicName The name of the topic to be created.
-     * @return A map with the status of the topic creation.
-     */
     @PostMapping("/create_topic")
     public Map<String, Object> createTopic(@RequestBody String topicName) {
         topics.add(topicName);
         logger.info("Created topic: " + topicName);
-        registerWithIndexingServer(); // Automatically notify indexing server
+        logEvent("Created Topic", topicName);
+        registerWithIndexingServer();
 
         return Map.of("status", "created", "topic", topicName);
     }
 
     @PostMapping("/report_metrics")
     public Map<String, Object> reportMetrics(@RequestBody Map<String, Object> metrics) {
-        // Send metrics to the indexing server or save them to a database
-        // metrics could contain latency, bandwidth, etc.
         logger.info("Reporting metrics from node " + nodeId + ": " + metrics);
+        logEvent("Metrics Reported", metrics.toString());
 
-        // Optionally, store metrics in a data structure for analytics
         return Map.of("status", "metrics_reported");
     }
 
-    /**
-     * Gracefully unregister from the indexing server when the peer node is shutting down.
-     */
+    @GetMapping("/get_metrics")
+    public Map<String, Object> getMetrics() {
+        Map<String, Object> metrics = new HashMap<>();
+        metrics.put("node_id", nodeId);
+        metrics.put("number_of_topics", topics.size());
+        metrics.put("topics", topics);
+        metrics.put("number_of_subscribers", topicSubscribers.values().stream().mapToInt(List::size).sum());
+        metrics.put("number_of_messages", topicMessages.values().stream().mapToInt(List::size).sum());
+
+        logEvent("Metrics Retrieved", "Node: " + nodeId);
+        logger.info("Metrics retrieved for node " + nodeId);
+
+        return Map.of("status", "success", "metrics", metrics);
+    }
+
     @PreDestroy
     public void onShutdown() {
         logger.info("Received shutdown signal, unregistering from indexing server...");
@@ -214,7 +184,7 @@ public class PeerNodeController {
     private void logEvent(String event, String details) {
         String logEntry = LocalDateTime.now() + " - Event: " + event + ", Details: " + details;
         eventLog.add(logEntry);
-        logger.info(logEntry);
+        logger.info("Log Event: " + logEntry);
     }
 
     @GetMapping("/event_log")
