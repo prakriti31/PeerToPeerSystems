@@ -8,10 +8,13 @@ import org.knowm.xchart.style.Styler;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class IndexingServerPlot {
+
+    private static final String BASE_DIR = "indexingservertests"; // Directory for CSV and PNG files
 
     private static final String[] LATENCY_FILES = {
             "register_node_latency.csv",
@@ -32,8 +35,8 @@ public class IndexingServerPlot {
     public static void main(String[] args) {
         for (String file : LATENCY_FILES) {
             try {
-                XYChart chart = createChart(file, "Latency");
-                String outputFileName = file.replace(".csv", ".png");
+                XYChart chart = createChart(Paths.get(BASE_DIR, file).toString(), "Latency");
+                String outputFileName = Paths.get(BASE_DIR, file.replace(".csv", ".png")).toString();
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved latency chart for " + file + " as " + outputFileName);
             } catch (IOException e) {
@@ -43,8 +46,8 @@ public class IndexingServerPlot {
 
         for (String file : THROUGHPUT_FILES) {
             try {
-                XYChart chart = createChart(file, "Throughput");
-                String outputFileName = file.replace(".csv", ".png");
+                XYChart chart = createChart(Paths.get(BASE_DIR, file).toString(), "Throughput");
+                String outputFileName = Paths.get(BASE_DIR, file.replace(".csv", ".png")).toString();
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved throughput chart for " + file + " as " + outputFileName);
             } catch (IOException e) {

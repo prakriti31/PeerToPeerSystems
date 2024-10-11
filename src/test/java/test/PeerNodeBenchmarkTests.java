@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class PeerNodeBenchmarkTests {
 
     private final RestTemplate restTemplate;
     private final String baseUrl;
+    private static final String OUTPUT_DIR = "peernodetests"; // Directory for CSV files
 
     // Constants
     private static final int THREAD_TERMINATION_TIMEOUT = 1; // in minutes
@@ -32,10 +34,18 @@ public class PeerNodeBenchmarkTests {
     public PeerNodeBenchmarkTests(String baseUrl) {
         this.restTemplate = new RestTemplate();
         this.baseUrl = baseUrl;
+        createOutputDirectory(); // Create the output directory at initialization
+    }
+
+    private void createOutputDirectory() {
+        File directory = new File(OUTPUT_DIR);
+        if (!directory.exists()) {
+            directory.mkdir(); // Create the directory if it does not exist
+        }
     }
 
     private void writeToCSV(String fileName, String data) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_DIR + "/" + fileName, true))) {
             writer.write(data);
             writer.newLine();
         } catch (IOException e) {
@@ -125,7 +135,7 @@ public class PeerNodeBenchmarkTests {
         final int maxClients = 8; // Increase as needed
         final int increment = 1;
 
-        // Create CSV files with headers
+        // Create CSV files with headers in the specified directory
         createCSVFile("initialize_latency.csv");
         createCSVFile("initialize_throughput.csv");
         createCSVFile("publish_latency.csv");
@@ -158,7 +168,7 @@ public class PeerNodeBenchmarkTests {
     }
 
     private static void createCSVFile(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_DIR + "/" + fileName))) {
             writer.write("Number of Clients,Time Taken (seconds)");
             writer.newLine();
         } catch (IOException e) {

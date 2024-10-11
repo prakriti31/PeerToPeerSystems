@@ -8,10 +8,14 @@ import org.knowm.xchart.style.Styler;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PeerNodePlot {
+
+    private static final String DIRECTORY = "peernodetests/";
 
     private static final String[] LATENCY_FILES = {
             "initialize_latency.csv",
@@ -38,8 +42,8 @@ public class PeerNodePlot {
     public static void main(String[] args) {
         for (String file : LATENCY_FILES) {
             try {
-                XYChart chart = createChart(file, "Latency");
-                String outputFileName = file.replace(".csv", ".png");
+                XYChart chart = createChart(DIRECTORY + file, "Latency");
+                String outputFileName = DIRECTORY + file.replace(".csv", ".png");
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved latency chart for " + file + " as " + outputFileName);
             } catch (IOException e) {
@@ -49,8 +53,8 @@ public class PeerNodePlot {
 
         for (String file : THROUGHPUT_FILES) {
             try {
-                XYChart chart = createChart(file, "Throughput");
-                String outputFileName = file.replace(".csv", ".png");
+                XYChart chart = createChart(DIRECTORY + file, "Throughput");
+                String outputFileName = DIRECTORY + file.replace(".csv", ".png");
                 saveChartAsPNG(chart, outputFileName);
                 System.out.println("Saved throughput chart for " + file + " as " + outputFileName);
             } catch (IOException e) {
