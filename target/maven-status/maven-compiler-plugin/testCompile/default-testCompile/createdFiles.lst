@@ -1,4 +1,6 @@
 test\PeerNetworkTestRequirement1.class
+test\PeerNodeBenchmarkTests.class
 test\PeerNetworkTestRequirement2.class
 test\IndexingServerBenchmarkTests.class
 test\IndexingServerPlot.class
+test\PeerNodePlot.class
